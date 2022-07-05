@@ -2,6 +2,7 @@
 import abc
 import logging
 from datetime import datetime
+import time
 from typing import Dict, Generator, Iterable, List, Optional, Tuple
 
 import grpc
@@ -334,6 +335,7 @@ class Services(ICandleGetter):
         to = to or now()
 
         for local_from_, local_to in get_intervals(interval, from_, to):
+            time.sleep(1)
             candles_response = self.market_data.get_candles(
                 figi=figi,
                 interval=interval,
